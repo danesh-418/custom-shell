@@ -34,5 +34,5 @@ shell["hello"] = hello_world
 ```
 Finally, run the shell:
 ```python
-shell.run
+shell.run()
 ```
