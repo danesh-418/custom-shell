@@ -14,11 +14,11 @@ See [the example](examples/ex1).
 
 ### Walkthrough
 
-First, create a `Shell` object:
+First, create a `Shell` object (with an optional prompt and intro text):
 ```python
 from custom_shell import Shell
 
-shell = Shell()
+shell = Shell(prompt="> ", intro="Welcome to the shell!")
 ```
 Next, create apps using [`click`](https://click.palletsprojects.com/en/stable/):
 ```python
