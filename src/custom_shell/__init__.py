@@ -20,6 +20,8 @@ class Shell(cmd.Cmd):
             except Exception as exc:
                 if exc == KeyboardInterrupt:
                     raise
+                else:
+                    print(exc)
 
         setattr(self, f"do_{cmd_name}", wrapper)
 
