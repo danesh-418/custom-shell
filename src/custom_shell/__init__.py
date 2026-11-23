@@ -13,7 +13,7 @@ class Shell(cmd.Cmd):
     def run(self):
         self.cmdloop()
     def __setitem__(self, cmd_name: str, func: click.Command | click.Group):
-        @wraps(func.callback)  # pyright: ignore[reportArgumentType]
+        @wraps(func)  # pyright: ignore[reportArgumentType]
         def wrapper(arg):
             try:
                 func(shlex.split(arg), standalone_mode=False)
