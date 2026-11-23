@@ -15,7 +15,11 @@ class Shell(cmd.Cmd):
     def __setitem__(self, cmd_name: str, func: click.Command | click.Group):
         @wraps(func.callback)  # pyright: ignore[reportArgumentType]
         def wrapper(arg):
-            func(shlex.split(arg), standalone_mode=False)
+            try:
+                func(shlex.split(arg), standalone_mode=False)
+            except Exception as exc:
+                if exc == KeyboardInterrupt:
+                    raise
 
         setattr(self, f"do_{cmd_name}", wrapper)
 
