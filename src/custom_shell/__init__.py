@@ -17,11 +17,12 @@ class Shell(cmd.Cmd):
         def wrapper(arg):
             try:
                 func(shlex.split(arg), standalone_mode=False)
+            except (KeyboardInterrupt, click.Abort):
+                raise
+            except click.ClickException as exc:
+                exc.show()
             except Exception as exc:
-                if exc == KeyboardInterrupt:
-                    raise
-                else:
-                    print(exc)
+                print(exc)
 
         setattr(self, f"do_{cmd_name}", wrapper)
 
